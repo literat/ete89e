@@ -5,65 +5,25 @@ use Nette\Forms\Form;
 use Nette\Mail\Message;
 use Nette\Utils\Json;
 
-function read_file($file) {
-	$content = @file_get_contents($file);
-	if ($content === FALSE) {
-		throw new Nette\IOException("Unable to read file '$file'.");
-	}
-
-	return $content;
-}
-
-function write_file($file, $content, $mode = 0666) {
-	if (@file_put_contents($file, $content) === FALSE) { // @ is escalated to exception
-		throw new Nette\IOException("Unable to write file '$file'.");
-	}
-	if ($mode !== NULL && !@chmod($file, $mode)) { // @ is escalated to exception
-		throw new Nette\IOException("Unable to chmod file '$file'.");
-	}
-}
-
-function handle_gifts($values, $gifts, $file) {
-	list($item, $id) = explode('-', $values);
-	$id = (int)$id;
-	foreach($gifts->$item as $itm) {
-		if($itm->id == $id) {
-			if($itm->count > 1) {
-				$itm->count--;
-			} else {
-				$itm->reserved = 1;
-			}
-		}
-	}
-
-	$giftsContent = Json::encode($gifts);
-	write_file($file, $giftsContent);
-}
-
 // Load libraries
-require __DIR__ . '/../app/libs/nette.phar';
+require __DIR__ . '/app/libs/nette.phar';
 
 $configurator = new Nette\Configurator;
 
 // Enable Nette Debugger for error visualisation & logging
-$configurator->enableDebugger(__DIR__ . '/../app/temp/log');
+$configurator->enableDebugger(__DIR__ . '/app/temp/log');
 
 // Configure libraries
-$configurator->setTempDirectory(__DIR__ . '/../app/temp');
+$configurator->setTempDirectory(__DIR__ . '/app/temp');
 
 // Create Dependency Injection container from config.neon file
-$configurator->addConfig(__DIR__ . '/../app/config/config.neon', $configurator::AUTO);
+$configurator->addConfig(__DIR__ . '/app/config/config.neon', $configurator::AUTO);
 $container = $configurator->createContainer();
 $mailer = $container->getService('mailer');
 
-// Read gifts list
-$giftsFile = __DIR__ . '/../app/temp/gifts.json';
-$giftsContent = read_file($giftsFile);
-$gifts = Json::decode($giftsContent);
-
 // Setup routes
 $router = $container->getService('router');
-$router[] = new Route('', function($presenter) use ($mailer, $gifts, $giftsFile) {
+$router[] = new Route('', function($presenter) use ($mailer) {
 
 	// create contact form
 	$form = new Form;
@@ -91,7 +51,7 @@ $router[] = new Route('', function($presenter) use ($mailer, $gifts, $giftsFile)
 		->setAttribute('class', 'btn btn-default btn-xl wow tada');
 
 	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/../app/templates/main.latte');
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/main.latte');
 	if(!isset($template->flashMessage)) {
 		$template->flashMessage = '';
 	}
@@ -99,18 +59,12 @@ $router[] = new Route('', function($presenter) use ($mailer, $gifts, $giftsFile)
 		$template->resetForm = '';
 	}
 
-	// assign gifts
-	$template->gifts = $gifts;
 	// assign form
 	$template->form = $form;
 
 	// form on success
 	if ($form->isSuccess()) {
 		$values = $form->getValues();
-
-		if(!empty($values['gifts'])) {
-			handle_gifts($values['gifts'], $gifts, $giftsFile);
-		}
 
 		$message = new Message;
 		$message->addTo('tomas@litera.me')
@@ -119,7 +73,7 @@ $router[] = new Route('', function($presenter) use ($mailer, $gifts, $giftsFile)
 			->setSubject($values['subject'])
 			->setBody($values['message']);
 
-		$mailTemplate = $presenter->createTemplate()->setFile(__DIR__ . '/../app/templates/email.latte');
+		$mailTemplate = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/email.latte');
 		$mailTemplate->title = 'Zpráva ze svatebního formuláře';
 		$mailTemplate->values = $values;
 
