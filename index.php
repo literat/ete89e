@@ -94,5 +94,11 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 	return $template;
 });
 
+$router[] = new Route('kontakt', function($presenter) use ($mailer) {
+	// create template
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/contact.latte');
+	return $template;
+});
+
 // Run the application!
 $container->getService('application')->run();
