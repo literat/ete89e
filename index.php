@@ -94,9 +94,39 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 	return $template;
 });
 
-$router[] = new Route('kontakt', function($presenter) use ($mailer) {
+$router[] = new Route('contact', function($presenter) use ($mailer) {
 	// create template
 	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/contact.latte');
+	return $template;
+});
+
+$router[] = new Route('blog', function($presenter) {
+	// create template
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/blog.latte');
+	return $template;
+});
+
+$router[] = new Route('portfolio', function($presenter) {
+	// create template
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/portfolio.latte');
+	return $template;
+});
+
+$router[] = new Route('typography', function($presenter) {
+	// create template
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/typography.latte');
+	return $template;
+});
+
+$router[] = new Route('components', function($presenter) {
+	// create template
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/components.latte');
+	return $template;
+});
+
+$router[] = new Route('pricingbox', function($presenter) {
+	// create template
+	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/pricingbox.latte');
 	return $template;
 });
 
