@@ -16,6 +16,9 @@
 <!-- Theme skin -->
 <link href="{$basePath}/www/skins/default.css" rel="stylesheet" />
 
+<!-- Microformats -->
+<link rel="profile" href="http://microformats.org/profile/hcard">
+
 <!-- =======================================================
 	Theme Name: Moderna
 	Theme URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
@@ -41,21 +44,20 @@
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="{$baseUrl}">Hlavní strana</a></li>
-						<li><a href="{$baseUrl}/blog">Novinky</a></li>
+						<li><a href="{$baseUrl}/?page=novinky">Novinky</a></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Features <b class=" icon-angle-down"></b></a>
+							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><span class="fa fa-caret-down"></span> Obecní úřad <b class=" icon-angle-down"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="{$baseUrl}/typography">Typography</a></li>
-								<li><a href="{$baseUrl}/components">Components</a></li>
-								<li><a href="{$baseUrl}/pricingbox">Pricing box</a></li>
+								<li><a href="{$baseUrl}/?page=zakladni-informace">Základní informace</a></li>
+								<li><a href="{$baseUrl}/?page=uredni-deska">Úřední deska</a></li>
+								<li><a href="{$baseUrl}/?page=historie">Historie</a></li>
 							</ul>
 						</li>
-						<li><a href="{$baseUrl}/portfolio">O nás</a></li>
-						<li><a href="{$baseUrl}/contact">Kontakt</a></li>
+						<li><a href="{$baseUrl}/?page=o-nas">O nás</a></li>
+						<li><a href="{$baseUrl}/?page=kontakt">Kontakt</a></li>
 					</ul>
 				</div>
 			</div>
-			<div class="container">studentský projekt</div>
 		</div>
 	</header>
 	<!-- end header -->
@@ -66,15 +68,20 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-3">
-				<div class="widget">
+				<div class="widget vcard">
 					<h5 class="widgetheading">Kontaktujte nás</h5>
 					<address>
-					<strong>Obecní úřad Janoušov</strong><br>
-					 Janoušov č. 65<br>
-					 789 91 Štíty </address>
+						<strong>
+							<span class="fn org">Obecní úřad Janoušov</span>
+						</strong><br>
+					<div class="adr">
+						<span class="street-address">Janoušov č. 65<br>
+					 789 91 Štíty</span>
+					</div>
+					</address>
 					<p>
-						<i class="icon-phone"></i> 583 296 103 <br>
-						<i class="icon-envelope-alt"></i> info@janousov.cz
+						<i class="icon-phone"></i> <span class="tel">583 296 103</span> <br>
+						<i class="icon-envelope-alt"></i> <span class="email">info@janousov.cz</span>
 					</p>
 				</div>
 			</div>
@@ -82,11 +89,11 @@
 				<div class="widget">
 					<h5 class="widgetheading">Stránky</h5>
 					<ul class="link-list">
-						<li><a href="#">Press release</a></li>
-						<li><a href="#">Terms and conditions</a></li>
-						<li><a href="#">Privacy policy</a></li>
-						<li><a href="#">Career center</a></li>
-						<li><a href="#">Contact us</a></li>
+						<li><a href="#">Hlavní strana</a></li>
+						<li><a href="#">Novinky</a></li>
+						<li><a href="#">Obecní úřad</a></li>
+						<li><a href="#">O nás</a></li>
+						<li><a href="#">Kontakt</a></li>
 					</ul>
 				</div>
 			</div>
@@ -127,6 +134,12 @@
 							-->
 							<a href="https://bootstrapmade.com/">Free Bootstrap Themes</a> by <a href="https://bootstrapmade.com/">BootstrapMade</a>
 							<p>&copy; ČZU PEF, Studentský projekt</p>
+							<p>
+								<a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">
+									<img alt="Licence Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" />
+								</a>
+								Toto dílo podléhá licenci <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">Creative Commons Uveďte původ-Neužívejte komerčně-Nezpracovávejte 4.0 Mezinárodní License</a>.
+							</p>
 						</div>
 					</div>
 				</div>
