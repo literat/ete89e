@@ -25,6 +25,32 @@ $mailer = $container->getService('mailer');
 $router = $container->getService('router');
 $router[] = new Route('', function($presenter) use ($mailer) {
 
+	$page = $presenter->request->getParameter('page');
+
+	switch($page) {
+		case 'kontakt':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/kontakt.latte');
+			break;
+		case 'novinky':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/novinky.latte');
+			break;
+		case 'o-nas':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/o-nas.latte');
+			break;
+		case 'zakladni-informace':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/zakladni-informace.latte');
+			break;
+		case 'uredni-deska':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/uredni-deska.latte');
+			break;
+		case 'historie':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/historie.latte');
+			break;
+		default:
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/main.latte');
+			break;
+	}
+
 	// create contact form
 	$form = new Form;
 	$form->addText('name', 'Vaše jméno')
@@ -51,7 +77,7 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 		->setAttribute('class', 'btn btn-default btn-xl wow tada');
 
 	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/main.latte');
+
 	if(!isset($template->flashMessage)) {
 		$template->flashMessage = '';
 	}
@@ -91,42 +117,6 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 		$presenter->redirectUrl($presenter->context->httpRequest->url->baseUrl . '#contact-form-section');
 	}
 
-	return $template;
-});
-
-$router[] = new Route('contact', function($presenter) use ($mailer) {
-	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/contact.latte');
-	return $template;
-});
-
-$router[] = new Route('blog', function($presenter) {
-	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/blog.latte');
-	return $template;
-});
-
-$router[] = new Route('portfolio', function($presenter) {
-	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/portfolio.latte');
-	return $template;
-});
-
-$router[] = new Route('typography', function($presenter) {
-	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/typography.latte');
-	return $template;
-});
-
-$router[] = new Route('components', function($presenter) {
-	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/components.latte');
-	return $template;
-});
-
-$router[] = new Route('pricingbox', function($presenter) {
-	// create template
-	$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/pricingbox.latte');
 	return $template;
 });
 
