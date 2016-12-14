@@ -34,8 +34,8 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 		case 'novinky':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/novinky.latte');
 			break;
-		case 'o-nas':
-			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/o-nas.latte');
+		case 'fotogalerie':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/fotogalerie.latte');
 			break;
 		case 'zakladni-informace':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/zakladni-informace.latte');
