@@ -42,12 +42,15 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 			break;
 		case 'zakladni-informace':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/zakladni-informace.latte');
+			$template->activeOffice = ' active';
 			break;
 		case 'uredni-deska':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/uredni-deska.latte');
+			$template->activeOffice = ' active';
 			break;
 		case 'historie':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/historie.latte');
+			$template->activeOffice = ' active';
 			break;
 		default:
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/main.latte');
