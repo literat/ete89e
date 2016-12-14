@@ -30,12 +30,15 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 	switch($page) {
 		case 'kontakt':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/kontakt.latte');
+			$template->activeContact = 'class="active"';
 			break;
 		case 'novinky':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/novinky.latte');
+			$template->activeNews = 'class="active"';
 			break;
 		case 'fotogalerie':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/fotogalerie.latte');
+			$template->activePhotogallery = 'class="active"';
 			break;
 		case 'zakladni-informace':
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/zakladni-informace.latte');
@@ -48,6 +51,7 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 			break;
 		default:
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/main.latte');
+			$template->activeMain = 'class="active"';
 			break;
 	}
 

@@ -44,8 +44,8 @@
 				</div>
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="{$baseUrl}">Hlavní strana</a></li>
-						<li><a href="{$baseUrl}/?page=novinky">Novinky</a></li>
+						<li {isset($activeMain) ? $activeMain|noescape}><a href="{$baseUrl}">Hlavní strana</a></li>
+						<li {isset($activeNews) ? $activeNews|noescape}><a href="{$baseUrl}/?page=novinky">Novinky</a></li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><span class="fa fa-caret-down"></span> Obecní úřad <b class=" icon-angle-down"></b></a>
 							<ul class="dropdown-menu">
@@ -54,8 +54,8 @@
 								<li><a href="{$baseUrl}/?page=historie">Historie</a></li>
 							</ul>
 						</li>
-						<li><a href="{$baseUrl}/?page=fotogalerie">Fotogalerie</a></li>
-						<li><a href="{$baseUrl}/?page=kontakt">Kontakt a mapa</a></li>
+						<li {isset($activePhotogallery) ? $activePhotogallery|noescape}><a href="{$baseUrl}/?page=fotogalerie">Fotogalerie</a></li>
+						<li {isset($activeContact) ? $activeContact|noescape}><a href="{$baseUrl}/?page=kontakt">Kontakt a mapa</a></li>
 					</ul>
 				</div>
 			</div>
@@ -90,11 +90,11 @@
 				<div class="widget">
 					<h5 class="widgetheading">Stránky</h5>
 					<ul class="link-list">
-						<li><a href="#">Hlavní strana</a></li>
-						<li><a href="#">Novinky</a></li>
-						<li><a href="#">Obecní úřad</a></li>
-						<li><a href="#">O nás</a></li>
-						<li><a href="#">Kontakt</a></li>
+						<li><a href="{$baseUrl}/">Hlavní strana</a></li>
+						<li><a href="{$baseUrl}/?page=novinky">Novinky</a></li>
+						<li><a href="{$baseUrl}/?page=obecni-urad">Obecní úřad</a></li>
+						<li><a href="{$baseUrl}/?page=fotogalerie">Fotogalerie</a></li>
+						<li><a href="{$baseUrl}/?page=kontakt">Kontakt a mapa</a></li>
 					</ul>
 				</div>
 			</div>
