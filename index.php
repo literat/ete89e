@@ -52,6 +52,10 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/historie.latte');
 			$template->activeOffice = ' active';
 			break;
+		case 'turistika':
+			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/turistika.latte');
+			$template->activeTurist = ' active';
+			break;
 		default:
 			$template = $presenter->createTemplate()->setFile(__DIR__ . '/app/templates/main.latte');
 			$template->activeMain = 'class="active"';

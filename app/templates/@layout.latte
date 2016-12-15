@@ -54,6 +54,7 @@
 								<li><a href="{$baseUrl}/?page=historie">Historie</a></li>
 							</ul>
 						</li>
+						<li {isset($activeTurist) ? $activeTurist|noescape}><a href="{$baseUrl}/?page=turistika">Turistické cíle</a></li>
 						<li {isset($activePhotogallery) ? $activePhotogallery|noescape}><a href="{$baseUrl}/?page=fotogalerie">Fotogalerie</a></li>
 						<li {isset($activeContact) ? $activeContact|noescape}><a href="{$baseUrl}/?page=kontakt">Kontakt a mapa</a></li>
 					</ul>
