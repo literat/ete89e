@@ -1,22 +1,18 @@
-common:
-	php:
-		date.timezone: Europe/Prague
+php:
+    date.timezone: Europe/Prague
 
-	nette:
-		container:
-			accessors: TRUE
+di:
+    accessors: TRUE
 
-	services:
-		mailer:
-			class: Nette\Mail\SendmailMailer
+application:
+    errorPresenter: Error
+    mapping:
+        *: App\*Module\Presenters\*Presenter
 
-production < common:
-	services:
-		nette.latteFactory:
-			setup:
-				- setTempDirectory(null)
+session:
+    expiration: 14 days
 
-development < common:
-	services:
-		cacheStorage:
-			class: Nette\Caching\Storages\DevNullStorage
+services:
+    router: App\RouterFactory::createRouter
+    mailer:
+        class: Nette\Mail\SendmailMailer

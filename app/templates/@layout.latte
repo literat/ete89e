@@ -45,18 +45,18 @@
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
 						<li {isset($activeMain) ? $activeMain|noescape}><a href="{$baseUrl}">Hlavní strana</a></li>
-						<li {isset($activeNews) ? $activeNews|noescape}><a href="{$baseUrl}/?page=novinky">Novinky</a></li>
+						<li {isset($activeNews) ? $activeNews|noescape}><a href="{$baseUrl}/novinky">Novinky</a></li>
 						<li class="dropdown{isset($activeOffice) ? $activeOffice}">
 							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><span class="fa fa-caret-down"></span> Obecní úřad <b class=" icon-angle-down"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="{$baseUrl}/?page=zakladni-informace">Základní informace</a></li>
-								<li><a href="{$baseUrl}/?page=uredni-deska">Úřední deska</a></li>
-								<li><a href="{$baseUrl}/?page=historie">Historie</a></li>
+								<li><a href="{$baseUrl}/zakladni-informace">Základní informace</a></li>
+								<li><a href="{$baseUrl}/uredni-deska">Úřední deska</a></li>
+								<li><a href="{$baseUrl}/historie">Historie</a></li>
 							</ul>
 						</li>
-						<li {isset($activeTurist) ? $activeTurist|noescape}><a href="{$baseUrl}/?page=turistika">Turistické cíle</a></li>
-						<li {isset($activePhotogallery) ? $activePhotogallery|noescape}><a href="{$baseUrl}/?page=fotogalerie">Fotogalerie</a></li>
-						<li {isset($activeContact) ? $activeContact|noescape}><a href="{$baseUrl}/?page=kontakt">Kontakt a mapa</a></li>
+						<li {isset($activeTurist) ? $activeTurist|noescape}><a href="{$baseUrl}/turistika">Turistické cíle</a></li>
+						<li {isset($activePhotogallery) ? $activePhotogallery|noescape}><a href="{$baseUrl}/fotogalerie">Fotogalerie</a></li>
+						<li {isset($activeContact) ? $activeContact|noescape}><a href="{$baseUrl}/kontakt">Kontakt a mapa</a></li>
 					</ul>
 				</div>
 			</div>

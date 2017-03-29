@@ -1,5 +1,11 @@
 <?php
 
+$container = require __DIR__ . '/app/bootstrap.php';
+
+$container->getByType(Nette\Application\Application::class)
+	->run();
+
+/*
 use Nette\Application\Routers\Route;
 use Nette\Forms\Form;
 use Nette\Mail\Message;
@@ -133,3 +139,4 @@ $router[] = new Route('', function($presenter) use ($mailer) {
 
 // Run the application!
 $container->getService('application')->run();
+*/
