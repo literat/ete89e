@@ -32,7 +32,12 @@ class RouterFactory
 					'zakladni-informace'	=> 'BasicInformations',
 				],
 			],
-			'action'	=> 'default',
+			'action'	=> [
+				Route::VALUE		=> 'default',
+				Route::FILTER_TABLE	=> [
+					'zobrazit'	=> 'show',
+				],
+			],
 			'id'		=> null,
 		]);
 		return $router;

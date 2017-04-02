@@ -17,26 +17,25 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
-				<article>
+				<article n:foreach="$posts as $post">
 						<div class="post-image">
 							<div class="post-heading">
-								<h3><a href="#">Poplatky za psy</a></h3>
+								<h3><a href="#">{$post->title}</a></h3>
 							</div>
 							<img src="{$basePath}/www/img/dummies/blog/img1.jpg" alt="" />
 						</div>
-						<p>
-							 Obecní úřad Janoušov vybírá poplatek ze psů za rok 2016. Poplatky jsou splatné do 30.9.2016 na Obecním Úřadě Janoušov v úředních hodinách (Pondělí 17:30 - 18:30).
-						</p>
+						<p>{$post->content}</p>
 						<div class="bottom-article">
 							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#"> 23. březen 2013</a></li>
+								<li><i class="icon-calendar"></i><a href="#">{$post->created_at|date:'F j, Y'}</a></li>
 								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
 								<li><i class="icon-folder-open"></i><a href="#"> Novinky</a></li>
 								<li><i class="icon-comments"></i><a href="#">4 komentáře</a></li>
 							</ul>
-							<a href="#" class="pull-right">Číst více <i class="icon-angle-right"></i></a>
+							<a n:href="News:show $post->id" class="pull-right">Číst více <i class="icon-angle-right"></i></a>
 						</div>
 				</article>
+
 				<article>
 						<div class="post-slider">
 							<div class="post-heading">
