@@ -13,6 +13,8 @@ session:
     expiration: 14 days
 
 services:
-    router: App\RouterFactory::createRouter
+    #router: App\RouterFactory::createRouter
+    router: Nette\Application\Routers\SimpleRouter('Homepage:default')
     mailer:
         class: Nette\Mail\SendmailMailer
+    - App\Model\ArticleManager
