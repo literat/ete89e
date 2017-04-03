@@ -33,6 +33,14 @@ class ArticleManager
 	}
 
 	/**
+	 * @return Nette\Database\Table\Selection
+	 */
+	public function getAllPosts()
+	{
+		return $this->getDatabase()->table('posts');
+	}
+
+	/**
 	 * @param  array $values
 	 * @return ActiveRow
 	 */
@@ -58,7 +66,7 @@ class ArticleManager
 	 * @param  integer $postId
 	 * @return ActiveRow
 	 */
-	public function find($postId)
+	public function find($id)
 	{
 		return $this->getDatabase()->table('posts')->get($id);
 	}

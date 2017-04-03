@@ -42,6 +42,21 @@ class SignPresenter extends Nette\Application\UI\Presenter
 		$form->addSubmit('send', 'Přihlásit');
 
 		$form->onSuccess[] = [$this, 'signInFormSucceeded'];
+
+		// setup form rendering
+		$renderer = $form->getRenderer();
+		$renderer->wrappers['form']['container'] = 'div class="contactForm"';
+		$renderer->wrappers['controls']['container'] = NULL;
+		$renderer->wrappers['pair']['container'] = 'div class="form-group"';
+		$renderer->wrappers['pair']['.error'] = 'has-error';
+		$renderer->wrappers['control']['container'] = NULL;
+		$renderer->wrappers['control']['.text'] = 'form-control';
+		$renderer->wrappers['control']['.password'] = 'form-control';
+		$renderer->wrappers['control']['.submit'] = 'btn btn-theme';
+		$renderer->wrappers['label']['container'] = 'div class="col-sm-3 control-label"';
+		$renderer->wrappers['control']['description'] = 'span class=help-block';
+		$renderer->wrappers['control']['errorcontainer'] = 'span class=help-block';
+
 		return $form;
 	}
 

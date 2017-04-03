@@ -40,23 +40,25 @@
 						<span class="icon-bar"></span>
 						<span class="hidden">Menu</span>
 					</button>
-					<a class="navbar-brand" href="{$baseUrl}"><h1><span>J</span>anoušov</h1></a>
+					<a class="navbar-brand" href="{link Homepage:default}"><h1><span>J</span>anoušov</h1></a>
 				</div>
 				<div class="navbar-collapse collapse ">
 					<ul class="nav navbar-nav">
 						<li {isset($activeMain) ? $activeMain|noescape}><a href="{$baseUrl}">Hlavní strana</a></li>
-						<li {isset($activeNews) ? $activeNews|noescape}><a href="{$baseUrl}/novinky">Novinky</a></li>
+						<li {isset($activeNews) ? $activeNews|noescape}><a href="{link News:default}">Novinky</a></li>
 						<li class="dropdown{isset($activeOffice) ? $activeOffice}">
 							<a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false"><span class="fa fa-caret-down"></span> Obecní úřad <b class=" icon-angle-down"></b></a>
 							<ul class="dropdown-menu">
-								<li><a href="{$baseUrl}/zakladni-informace">Základní informace</a></li>
-								<li><a href="{$baseUrl}/uredni-deska">Úřední deska</a></li>
-								<li><a href="{$baseUrl}/historie">Historie</a></li>
+								<li><a href="{link BasicInformations:default}">Základní informace</a></li>
+								<li><a href="{link OfficialDesk:default}">Úřední deska</a></li>
+								<li><a href="{link History:default}">Historie</a></li>
 							</ul>
 						</li>
-						<li {isset($activeTurist) ? $activeTurist|noescape}><a href="{$baseUrl}/turistika">Turistické cíle</a></li>
-						<li {isset($activePhotogallery) ? $activePhotogallery|noescape}><a href="{$baseUrl}/fotogalerie">Fotogalerie</a></li>
-						<li {isset($activeContact) ? $activeContact|noescape}><a href="{$baseUrl}/kontakt">Kontakt a mapa</a></li>
+						<li {isset($activeTurist) ? $activeTurist|noescape}><a href="{link Tourists:default}">Turistické cíle</a></li>
+						<li {isset($activePhotogallery) ? $activePhotogallery|noescape}><a href="{link Photogallery:default}">Fotogalerie</a></li>
+						<li {isset($activeContact) ? $activeContact|noescape}><a href="{link Contact:default}">Kontakt a mapa</a></li>
+						<li><a href="{link Homepage:rss}">RSS</a></li>
+						<li><a href="{link Homepage:sitemap}">Mapa webu</a></li>
 						{if $user->loggedIn}
 							<li><a n:href="Sign:out">Odhlásit</a></li>
 						{else}

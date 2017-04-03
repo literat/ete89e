@@ -1,4 +1,25 @@
 {block content}
-<h1 n:block=title>Přihlášení</h1>
 
-{control signInForm}
+<section id="inner-headline">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<ul class="breadcrumb">
+					<li><a href="{$basePath}"><i class="fa fa-home"></i></a><i class="icon-angle-right"></i></li>
+					<li class="active">Přihlášení</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section id="content">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<h4 n:block=title>Přihlásit</h4>
+				{control signInForm}
+			</div>
+		</div>
+	</div>
+</section>

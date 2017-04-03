@@ -101,11 +101,24 @@ class NewsPresenter extends BasePresenter
 		$form->addEmail('email', 'Email:');
 
 		$form->addTextArea('content', 'Komentář:')
-			->setRequired();
+			->setRequired()->setHtmlAttribute('class', 'form-control');
 
 		$form->addSubmit('send', 'Publikovat komentář');
 
 		$form->onSuccess[] = [$this, 'commentFormSucceeded'];
+
+		// setup form rendering
+		$renderer = $form->getRenderer();
+		$renderer->wrappers['form']['container'] = 'div class="contactForm"';
+		$renderer->wrappers['controls']['container'] = NULL;
+		$renderer->wrappers['pair']['container'] = 'div class="form-group"';
+		$renderer->wrappers['pair']['.error'] = 'has-error';
+		$renderer->wrappers['control']['.text'] = 'form-control';
+		$renderer->wrappers['control']['.email'] = 'form-control';
+		$renderer->wrappers['control']['.submit'] = 'btn btn-theme';
+		$renderer->wrappers['label']['container'] = 'div class="col-sm-3 control-label"';
+		$renderer->wrappers['control']['description'] = 'span class=help-block';
+		$renderer->wrappers['control']['errorcontainer'] = 'span class=help-block';
 
 		return $form;
 	}
@@ -116,10 +129,22 @@ class NewsPresenter extends BasePresenter
 		$form->addText('title', 'Titulek:')
 			->setRequired();
 		$form->addTextArea('content', 'Obsah:')
-			->setRequired();
+			->setRequired()->setHtmlAttribute('class', 'form-control');
 
 		$form->addSubmit('send', 'Uložit a publikovat');
 		$form->onSuccess[] = [$this, 'postFormSucceeded'];
+
+		// setup form rendering
+		$renderer = $form->getRenderer();
+		$renderer->wrappers['form']['container'] = 'div class="contactForm"';
+		$renderer->wrappers['controls']['container'] = NULL;
+		$renderer->wrappers['pair']['container'] = 'div class="form-group"';
+		$renderer->wrappers['pair']['.error'] = 'has-error';
+		$renderer->wrappers['control']['.text'] = 'form-control';
+		$renderer->wrappers['control']['.submit'] = 'btn btn-theme';
+		$renderer->wrappers['label']['container'] = 'div class="col-sm-3 control-label"';
+		$renderer->wrappers['control']['description'] = 'span class=help-block';
+		$renderer->wrappers['control']['errorcontainer'] = 'span class=help-block';
 
 		return $form;
 	}
