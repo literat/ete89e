@@ -17,23 +17,30 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-8">
+			{foreach $flashes as $flash}
+			<div class="flash {$flash->type}">{$flash->message}</div>
+			{/foreach}
 			<a n:href="News:create" n:if="$user->loggedIn">Vytvořit příspěvek</a>
 				<article n:foreach="$posts as $post">
 						<div class="post-image">
 							<div class="post-heading">
-								<h3><a href="#">{$post->title}</a></h3>
+								<h3><a href="{link News:show $post->id}">{$post->title}</a></h3>
 							</div>
 						</div>
 						<p>{$post->content}</p>
 						<div class="bottom-article">
 							<ul class="meta-post">
-								<li><i class="icon-calendar"></i><a href="#">{$post->created_at|date:'F j, Y'}</a></li>
+								<li><i class="icon-calendar"></i><a href="#">{$post->created_at|date:'j. n. Y'}</a></li>
 								<li><i class="icon-user"></i><a href="#"> Admin</a></li>
 								<li><i class="icon-folder-open"></i><a href="#"> Novinky</a></li>
-								<li><i class="icon-comments"></i><a href="#">{$post->related('comment')->order('created_at')->count()} komentáře</a></li>
+								<li><i class="icon-comments"></i><a href="{link News:show $post->id}#comments">{$post->related('comment')->order('created_at')->count()} komentáře</a></li>
 								<li>
 									<i class="icon-edit"></i>
 									<a n:href="News:edit $post->id" n:if="$user->loggedIn">Upravit příspěvek</a>
+								</li>
+								<li>
+									<i class="icon-delete"></i>
+									<a n:href="News:delete $post->id" n:if="$user->loggedIn">Smazat příspěvek</a>
 								</li>
 							</ul>
 							<a n:href="News:show $post->id" class="pull-right">Číst více <i class="icon-angle-right"></i></a>

@@ -72,6 +72,15 @@ class ArticleManager
 	}
 
 	/**
+	 * @param  integer $postId
+	 * @return ActiveRow
+	 */
+	public function destroy($id)
+	{
+		return $this->getDatabase()->table('posts')->where('id', $id)->delete();
+	}
+
+	/**
 	 * @return Context
 	 */
 	protected function getDatabase()

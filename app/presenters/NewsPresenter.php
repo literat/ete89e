@@ -23,9 +23,13 @@ class NewsPresenter extends BasePresenter
 	public function __construct(ArticleManager $articleManager, Context $database)
 	{
 		$this->setArticleManager($articleManager);
-		$this->database = $database;
+		$this->setDatabase($database);
 	}
 
+	/**
+	 * @param  integer $id
+	 * @return void
+	 */
 	public function actionEdit($id)
 	{
 		$post = $this->getArticleManager()->find($id);
@@ -33,6 +37,17 @@ class NewsPresenter extends BasePresenter
 			$this->error('Příspěvek nebyl nalezen');
 		}
 		$this['postForm']->setDefaults($post->toArray());
+	}
+
+	/**
+	 * @param  integer $id
+	 * @return void
+	 */
+	public function actionDelete($id)
+	{
+		$result = $this->getArticleManager()->destroy($id);
+		$this->flashMessage('Příspěvek byl smazán');
+		$this->redirect('News:default');
 	}
 
 	/**
@@ -163,6 +178,24 @@ class NewsPresenter extends BasePresenter
 	protected function setArticleManager(ArticleManager $manager)
 	{
 		$this->articleManager = $manager;
+
+		return $this;
+	}
+
+	/**
+	 * @return Context
+	 */
+	protected function getDatabase()
+	{
+		return $this->database;
+	}
+
+	/**
+	 * @param Context $database
+	 */
+	public function setDatabase(Context $database)
+	{
+		$this->database = $database;
 
 		return $this;
 	}
