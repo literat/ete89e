@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "99c035414b8489f0750049f57fa5d12d",
-    "content-hash": "74afdc534cf0cf138dcf93f8fd7b834b",
+    "hash": "6df941a46edd52097260055b4a447ff0",
+    "content-hash": "1e6126ebc36a610a1bd59a9f587a8566",
     "packages": [
         {
             "name": "latte/latte",
@@ -1285,6 +1285,65 @@
             "time": "2017-01-16 12:30:14"
         },
         {
+            "name": "texy/texy",
+            "version": "v2.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dg/texy.git",
+                "reference": "8ddd8e3ec6bb943e39a40d2aa353766468e0c0c0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dg/texy/zipball/8ddd8e3ec6bb943e39a40d2aa353766468e0c0c0",
+                "reference": "8ddd8e3ec6bb943e39a40d2aa353766468e0c0c0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.4"
+            },
+            "replace": {
+                "dg/texy": "*"
+            },
+            "require-dev": {
+                "nette/tester": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ],
+                "files": [
+                    "src/texy.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0",
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                }
+            ],
+            "description": "Texy converts plain text in easy to read Texy syntax into structurally valid (X)HTML. It supports adding of images, links, nested lists, tables and has full support for CSS. Texy supports hyphenation of long words (which reflects language rules), clickable emails and URL (emails are obfuscated against spambots), national typographic single and double quotation marks, ellipses, em dashes, dimension sign, nonbreakable spaces (e.g. in phone numbers), acronyms, arrows and many others. Texy code can optionally contain HTML tags.",
+            "homepage": "https://texy.info",
+            "keywords": [
+                "html",
+                "markdown",
+                "markup language",
+                "plain text",
+                "text",
+                "textile",
+                "texy",
+                "wiki",
+                "xhtml"
+            ],
+            "time": "2016-06-08 16:16:47"
+        },
+        {
             "name": "tracy/tracy",
             "version": "v2.4.6",
             "source": {
@@ -1411,6 +1470,8 @@
     "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
-    "platform": [],
+    "platform": {
+        "php": "~5.6"
+    },
     "platform-dev": []
 }
