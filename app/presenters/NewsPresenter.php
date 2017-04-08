@@ -10,12 +10,22 @@ use App\Model\ArticleManager;
 class NewsPresenter extends BasePresenter
 {
 
+	const ITEM_PER_PAGE = 5;
+
 	/**
 	 * @var ArticleManager
 	 */
 	private $articleManager;
 
 	private $database;
+
+	private $paginator;
+
+	public $page = 1;
+
+	public $onShowPage;
+
+	private $texy;
 
 	/**
 	 * @param ArticleManager $articleManager
@@ -24,6 +34,22 @@ class NewsPresenter extends BasePresenter
 	{
 		$this->setArticleManager($articleManager);
 		$this->setDatabase($database);
+	}
+
+	public function injectTexy(\Texy\Texy $texy)
+	{
+		$this->texy = $texy;
+	}
+
+	public function handleShowPage($page)
+	{
+		$this->onShowPage($this, $page);
+	}
+
+	public function loadState(array $params)
+	{
+		parent::loadState($params);
+		$this->getPaginator()->page = $this->page;
 	}
 
 	/**
@@ -51,11 +77,27 @@ class NewsPresenter extends BasePresenter
 	}
 
 	/**
+	 * @return void
+	 */
+	public function beforeRender()
+	{
+		parent::beforeRender();
+
+        $this->template->addFilter('texy', function ($text) {
+            return $this->texy->process($text);
+        });
+
+		$this->template->actuals = $this->getArticleManager()->getActualArticles()->limit(5);
+		$this->template->mostViewed = $this->getArticleManager()->mostViewed()->limit(5);
+	}
+
+	/**
 	 * @param  integer $id
 	 * @return void
 	 */
 	public function renderShow($id)
 	{
+		$this->getArticleManager()->incrementViews($id);
 		$post = $this->getArticleManager()->find($id);
 		if (!$post) {
 			$this->error('Stránka nebyla nalezena');
@@ -63,6 +105,7 @@ class NewsPresenter extends BasePresenter
 
 		$this->template->post = $post;
 		$this->template->comments = $post->related('comment')->order('created_at');
+		$this->template->mostViewed = $this->getArticleManager()->mostViewed();
 	}
 
 	/**
@@ -70,7 +113,15 @@ class NewsPresenter extends BasePresenter
 	 */
 	public function renderDefault()
 	{
-		$this->template->posts = $this->getArticleManager()->getPublicArticles()->limit(5);
+		$paginator = $this->getPaginator();
+		$paginator->setItemCount($this->getArticleManager()->countArticles());
+		$paginator->setItemsPerPage(self::ITEM_PER_PAGE);
+		$paginator->setPage($paginator->page);
+
+		$this->template->paginator = $paginator;
+		$this->template->posts = $this->getArticleManager()
+			->getPublicArticles()
+			->limit($paginator->getLength(), $paginator->getOffset());
 	}
 
 	public function commentFormSucceeded($form, $values)
@@ -198,6 +249,15 @@ class NewsPresenter extends BasePresenter
 		$this->database = $database;
 
 		return $this;
+	}
+
+	public function getPaginator()
+	{
+		if(!$this->paginator) {
+			$this->paginator = new \Nette\Utils\Paginator;
+		}
+
+		return $this->paginator;
 	}
 
 }

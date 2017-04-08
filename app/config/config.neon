@@ -18,3 +18,4 @@ services:
     mailer:
         class: Nette\Mail\SendmailMailer
     - App\Model\ArticleManager
+    texy: Texy\Texy

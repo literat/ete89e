@@ -33,6 +33,25 @@ class ArticleManager
 	}
 
 	/**
+	 * @return ActiveRow
+	 */
+	public function getActualArticles()
+	{
+		return $this->getDatabase()->table('posts')
+			->where('created_at < ', new \DateTime())
+			->order('created_at DESC');
+	}
+
+	/**
+	 * @return ActiveRow
+	 */
+	public function mostViewed()
+	{
+		return $this->getDatabase()->table('posts')
+			->order('views DESC');
+	}
+
+	/**
 	 * @return Nette\Database\Table\Selection
 	 */
 	public function getAllPosts()
@@ -78,6 +97,23 @@ class ArticleManager
 	public function destroy($id)
 	{
 		return $this->getDatabase()->table('posts')->where('id', $id)->delete();
+	}
+
+	/**
+	 * @param  integer $id
+	 * @return ActiveRow
+	 */
+	public function incrementViews($id)
+	{
+		return $this->getDatabase()->table('posts')->where('id', $id)->update(['views+=' => 1]);
+	}
+
+	/**
+	 * @return ActiveRow
+	 */
+	public function countArticles()
+	{
+		return $this->getDatabase()->table('posts')->count();
 	}
 
 	/**
